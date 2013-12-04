@@ -14,7 +14,7 @@ namespace Inventory
 
         public void reset()
         {
-            foreach (Item invItem in inventory)
+            foreach (string invItem in inventory)
             {
                 inventory.Remove(invItem);
             }
@@ -45,6 +45,7 @@ namespace Inventory
             {
                 inventoryFull(item);
             }
+
             else
             {
                 inventory.Add(item, inventoryKey);
@@ -82,23 +83,16 @@ namespace Inventory
             }
         }
 
-        public void removeFromInventory(Item itemToRemove)
+        public void removeFromInventory(string itemToRemove)
         {
-            inventory.Remove(itemToRemove);
-            inventoryKey--;
-        }
-    }
-
-    public class Item
-    {
-        string m_Name = string.Empty;
-        bool m_IsVisible = false;
-        string[] m_Locations = new string[9];
-        bool m_InInventory = false;
-
-        public void newItem(string name, bool visible, string[] locations, bool inInventory)
-        {
-
+            foreach (string item in inventory)
+            {
+                if (item == itemToRemove)
+                {
+                    inventory.Remove(itemToRemove);
+                    inventoryKey--;
+                }
+            }
         }
     }
 }
